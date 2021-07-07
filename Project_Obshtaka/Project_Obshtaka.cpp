@@ -82,7 +82,7 @@ void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 
 	for (int i = 0; i < customerCount; i++)
 	{
-		cout << "\nCustomer's Id: " << customers[i].Id << endl;
+		cout << "Customer's id:" << customers[i].Id << endl;;
 		cout << "Customer's Username: " << customers[i].Username << endl;
 		cout << "Customer's Password: " << customers[i].Password << endl;
 		cout << "Customer's First name: " << customers[i].First_Name << endl;
@@ -95,9 +95,6 @@ void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 
 void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	CUSTOMER customer;
-
-	cout << "Id: ";
-	cin >> customer.Id;
 
 	cout << "Username: ";
 	cin >> customer.Username;
@@ -134,14 +131,13 @@ void editOrderMenu(CUSTOMER* customers, int& customerCount) {
 
 	CUSTOMER customer = getOrder(customers, customerCount, customerId);
 
-	cout << "\n1. Id: " << endl;
-	cout << "2. Username: " << endl;
-	cout << "3. Password: " << endl;
-	cout << "4. First Name: " << endl;
-	cout << "5. LastName: " << endl;
-	cout << "6 Address: " << endl;
-	cout << "7 Student Name: " << endl;
-	cout << "8 Year of student: " << endl;
+	cout << "1. Username: " << endl;
+	cout << "2. Password: " << endl;
+	cout << "3. First Name: " << endl;
+	cout << "4. LastName: " << endl;
+	cout << "5 Address: " << endl;
+	cout << "6 Student Name: " << endl;
+	cout << "7 Year of student: " << endl;
 	cout << "Which field you want to edit: ";
 
 	int edit;
@@ -256,9 +252,16 @@ int main()
 	CUSTOMER customers[500];
 
 	bool mainMenu = true;
-
-	do {
-		mainMenu = showMainMenu(customers, customerCount, maxId);
-	} while (mainMenu);
+	string admin;
+	string adminpass;
+	getline(cin, admin);
+	getline(cin, adminpass);
+	bool isAdmina = isAdmin(admin, adminpass);
+	if (isAdmina == true)
+	{
+		do {
+			mainMenu = showMainMenu(customers, customerCount, maxId);
+		} while (mainMenu);
+	}
 }
 
