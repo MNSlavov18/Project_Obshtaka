@@ -20,12 +20,12 @@ bool isAdmin(string UsernName, string pass)
 	string adminPass = "adminpass";
 	if (UsernName == admin and adminPass == pass)
 	{
-		cout << "Correct Password!\nAccess Granted!" << endl;
+		cout << "Correct Password and Username!\nAccess Granted!" << endl;
 		return true;
 	}
 	else
 	{
-		cout << "Wrong Password! " << endl;
+		cout << "Wrong Password or Username! " << endl;
 		return false;
 	}
 }
@@ -92,7 +92,31 @@ void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 		cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
 	}
 }
-
+void getCustomerByParantLastNameAndStudentName(CUSTOMER* customers, int& customerCount)
+{
+	string familyParents;
+	string studentName;
+	getline(cin, familyParents);
+	getline(cin, studentName);
+	if (familyParents == customers.Last_Name and studentName== customers.Student_Name)
+	{
+		for (int i = 0; i < customerCount; i++)
+		{
+			cout << "Customer's id:" << customers[i].Id << endl;;
+			cout << "Customer's Username: " << customers[i].Username << endl;
+			cout << "Customer's Password: " << customers[i].Password << endl;
+			cout << "Customer's First name: " << customers[i].First_Name << endl;
+			cout << "Customer's Last Name: " << customers[i].Last_Name << endl;
+			cout << "Customer's Address: " << customers[i].Address << endl;
+			cout << "Customer's Student Name: " << customers[i].Student_Name << endl;
+			cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
+		}
+	}
+	else
+	{
+		cout << "There aren't people with that name!";
+	}
+}
 void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	CUSTOMER customer;
 
@@ -115,7 +139,7 @@ void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	cin >> customer.Student_Name;
 
 	cout << "Year of Student: ";
-	while (!(cin >> customer.Year_of_student) or customer.Year_of_student < 12 and customer.Year_of_student > 16)
+	while (!(cin >> customer.Year_of_student) or customer.Year_of_student < 12 or customer.Year_of_student > 16)
 	{
 		cin.clear();
 		cin.ignore(INT_MAX, '\n');
@@ -212,6 +236,7 @@ bool showMainMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	cout << "2. Show Customer" << endl;
 	cout << "3. Edit Customer Order" << endl;
 	cout << "4. Delete Customer Order" << endl;
+	cout << "5. Seatch" << endl;
 	cout << "9. Exit" << endl;
 	cout << "Your choice: ";
 
@@ -234,7 +259,11 @@ bool showMainMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 		deleteCustomerMenu(customers, customerCount, maxId);
 		break;
 	}
-
+	case 5:
+	{
+		search(customers, customerCount);
+		break;
+	}
 	case 9: {
 		return false;
 	}
@@ -254,7 +283,9 @@ int main()
 	bool mainMenu = true;
 	string admin;
 	string adminpass;
+	cout << "Insert Username: ";
 	getline(cin, admin);
+	cout << "Insert Password: ";
 	getline(cin, adminpass);
 	bool isAdmina = isAdmin(admin, adminpass);
 	if (isAdmina == true)
