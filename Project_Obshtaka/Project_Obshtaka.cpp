@@ -35,7 +35,7 @@ void createCustomer(CUSTOMER* customers, int& customerCount, CUSTOMER newOrder, 
 	customerCount++;
 	maxId++;
 }
-int getCustomerById(CUSTOMER* customers, int& customerCount, int Id)
+int getCustomerById(CUSTOMER* customers, int& customerCount, int Id )
 {
 	for (int i = 0; i < customerCount; i++)
 	{
@@ -74,7 +74,6 @@ CUSTOMER getOrder(CUSTOMER* customer, int& customerCount, int Id)
 	return customer[index];
 }
 
-
 void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 {
 
@@ -92,13 +91,12 @@ void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 		cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
 	}
 }
-void getCustomerByParantLastNameAndStudentName(CUSTOMER* customers, int& customerCount)
+void search(CUSTOMER* customers, int& customerCount )
 {
+	CUSTOMER customer;
 	string familyParents;
-	string studentName;
 	getline(cin, familyParents);
-	getline(cin, studentName);
-	if (familyParents == customers.Last_Name and studentName== customers.Student_Name)
+	if (familyParents == customer.Last_Name) 
 	{
 		for (int i = 0; i < customerCount; i++)
 		{
@@ -112,11 +110,11 @@ void getCustomerByParantLastNameAndStudentName(CUSTOMER* customers, int& custome
 			cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
 		}
 	}
-	else
-	{
-		cout << "There aren't people with that name!";
+		else
+		{
+			cout << "There aren't people with that name!";
+		}
 	}
-}
 void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	CUSTOMER customer;
 
@@ -148,11 +146,10 @@ void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 
 	createCustomer(customers, customerCount, customer, maxId);
 }
+
 void editOrderMenu(CUSTOMER* customers, int& customerCount) {
 	int customerId;
-	cout << "\nEnter car ID: ";
 	cin >> customerId;
-
 	CUSTOMER customer = getOrder(customers, customerCount, customerId);
 
 	cout << "1. Username: " << endl;
@@ -169,14 +166,14 @@ void editOrderMenu(CUSTOMER* customers, int& customerCount) {
 
 	switch (edit) {
 	case 1: {
-		cout << "Id: ";
-		cin >> customer.Id;
+		cout << "Username: ";
+		cin >> customer.Username;
 		updateCustomer(customers, customerCount, customer, customerId);
 		break;
 	}
 	case 2: {
-		cout << "Username: ";
-		cin >> customer.Username;
+		cout << "Password: ";
+		cin >> customer.Password;
 		updateCustomer(customers, customerCount, customer, customerId);
 		break;
 	}
@@ -221,7 +218,7 @@ void editOrderMenu(CUSTOMER* customers, int& customerCount) {
 void deleteCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	int customerId;
 
-	cout << "Enter car Id: ";
+	cout << "Enter User Id: ";
 	cin >> customerId;
 
 	deleteCustomer(customers, customerCount, customerId);
