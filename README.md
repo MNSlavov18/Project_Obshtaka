@@ -30,7 +30,7 @@ C++
 
 
 ## 🕵️ Roles:
-* 👨‍💻Mario Slavovo - Developer
+* 👨‍💻Mario Slavov - Developer
 * 💻Stoyan Ponchev - Documentation & Presentation
 
 
