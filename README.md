@@ -2,7 +2,6 @@
 ## 💻 Участници:
 * Стоян Пончев - 10G - SMPonchev18@codingburgas.bg
 * Марио Славов - 10A - MNSlavov18@codingburgas.bg
-* Симеон Николов - 10A - SRNikolov18@codingburgas.bg 
 
 
 ## 🦾 Използвани технологии:
@@ -12,8 +11,6 @@ C++
 ## 🕵️ Роли:
 * 👨‍💻 Марио Славов - Developer
 * 💻 Стоян Пончев - Documentation & Presentation
-* 👨‍💻 Симон Николов - Co-Developer
-
 
 ## 📖 Описание на проекта:
 Това е репозиторито за проекта Общежитие 2021. Ние създадохме програма, която ще регистрира хора и кандидати за настаняване в общежития. Програмата е създадена само за администратори и само те могат да добавят/променят/трият хора от регистъра.
@@ -26,7 +23,6 @@ C++
 ## 💻 Team members:
 * Stoyan Ponchev - 10G -  SMPonchev18@codingburgas.bg
 * Mario Slavov - 10A - MNSlavov18@codingburgas.bg
-* Simoen Nikolov - 10A - SRNikolov18@codingburgas.bg 
 
 
 ## 🦾 Used technologies:
@@ -36,7 +32,6 @@ C++
 ## 🕵️ Roles:
 * 👨‍💻Mario Slavovo - Developer
 * 💻Stoyan Ponchev - Documentation & Presentation
-* 👨‍💻 Simeon Nikolov - Co-Developer
 
 
 ## 📖 Project description:
