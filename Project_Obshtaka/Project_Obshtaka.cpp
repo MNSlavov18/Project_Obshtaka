@@ -95,11 +95,12 @@ void search(CUSTOMER* customers, int& customerCount )
 {
 	CUSTOMER customer;
 	string familyParents;
-	getline(cin, familyParents);
-	if (familyParents == customer.Last_Name) 
-	{
+	cin>>familyParents;
+	
 		for (int i = 0; i < customerCount; i++)
 		{
+			if (familyParents == customer.Last_Name)
+			{
 			cout << "Customer's id:" << customers[i].Id << endl;;
 			cout << "Customer's Username: " << customers[i].Username << endl;
 			cout << "Customer's Password: " << customers[i].Password << endl;
@@ -109,12 +110,13 @@ void search(CUSTOMER* customers, int& customerCount )
 			cout << "Customer's Student Name: " << customers[i].Student_Name << endl;
 			cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
 		}
+			else
+			{
+				cout << "There aren't people with that name!";
+			}
 	}
-		else
-		{
-			cout << "There aren't people with that name!";
-		}
-	}
+		
+}
 void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	CUSTOMER customer;
 
