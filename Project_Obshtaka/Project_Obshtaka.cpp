@@ -67,7 +67,7 @@ bool checkIsIdValid(CUSTOMER* customer, int& customerCount, int Id)
 	int index = getCustomerById(customer, customerCount, Id);
 	if (index == -1)
 	{
-		cout << "Enter valid ID";
+		cout << "Enter valid ID: ";
 		return false;
 	}
 	else
@@ -147,6 +147,7 @@ void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 
 void editOrderMenu(CUSTOMER* customers, int& customerCount) {
 	int customerId;
+	cout << "Enter Customer Id: ";
 	cin >> customerId;
 
 	bool a = checkIsIdValid(customers, customerCount, customerId);
@@ -159,9 +160,9 @@ void editOrderMenu(CUSTOMER* customers, int& customerCount) {
 	cout << "2. Password: " << endl;
 	cout << "3. First Name: " << endl;
 	cout << "4. LastName: " << endl;
-	cout << "5 Address: " << endl;
-	cout << "6 Student Name: " << endl;
-	cout << "7 Year of student: " << endl;
+	cout << "5. Address: " << endl;
+	cout << "6. Student Name: " << endl;
+	cout << "7. Year of student: " << endl;
 	cout << "Which field you want to edit: ";
 
 	int edit;
