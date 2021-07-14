@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-bool option1Check = false;
 
 struct CUSTOMER
 {
@@ -23,17 +22,11 @@ bool isAdmin(string UsernName, string pass)
 		cout << "Correct Password and Username!\nAccess Granted!" << endl;
 		return true;
 	}
-	else
-	{
-		cout << "Wrong Password or Username! " << endl;
-		return false;
-	}
 }
-void createCustomer(CUSTOMER* customers, int& customerCount, CUSTOMER newOrder, int& maxId) {
+void createCustomer(CUSTOMER* customers, int customerCount, CUSTOMER newOrder, int maxId) {
 	newOrder.Id = maxId;
 	customers[customerCount] = newOrder;
-	customerCount++;
-	maxId++;
+	
 }
 int getCustomerById(CUSTOMER* customers, int& customerCount, int Id )
 {
@@ -51,6 +44,7 @@ void updateCustomer(CUSTOMER* customers, int& customerCount, CUSTOMER newCustome
 {
 	int index = getCustomerById(customers, customerCount, maxId);
 	customers[index] = newCustomer;
+	
 }
 
 void deleteCustomer(CUSTOMER* customer, int& customerCount, int Id) {
@@ -66,12 +60,20 @@ void deleteCustomer(CUSTOMER* customer, int& customerCount, int Id) {
 CUSTOMER getOrder(CUSTOMER* customer, int& customerCount, int Id)
 {
 	int index = getCustomerById(customer, customerCount, Id);
-	if (index != Id)
+	return customer[index];
+}
+bool checkIsIdValid(CUSTOMER* customer, int& customerCount, int Id)
+{
+	int index = getCustomerById(customer, customerCount, Id);
+	if (index == -1)
 	{
 		cout << "Enter valid ID";
-		cin >> index;
+		return false;
 	}
-	return customer[index];
+	else
+	{
+		return true;
+	}
 }
 
 void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
@@ -91,35 +93,28 @@ void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 		cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
 	}
 }
-void search(CUSTOMER* customers, int& customerCount )
+/*bool serch(CUSTOMER* customers, int& customerCount)
 {
-	CUSTOMER customer;
 	string familyParents;
 	cin>>familyParents;
-	
-		for (int i = 0; i < customerCount; i++)
+  int count = 0;
+	for (int i = 0; i < customerCount; i++)
 		{
-			if (familyParents == customer.Last_Name)
+			if (familyParents == customers->Last_Name)
 			{
-			cout << "Customer's id:" << customers[i].Id << endl;;
-			cout << "Customer's Username: " << customers[i].Username << endl;
-			cout << "Customer's Password: " << customers[i].Password << endl;
-			cout << "Customer's First name: " << customers[i].First_Name << endl;
-			cout << "Customer's Last Name: " << customers[i].Last_Name << endl;
-			cout << "Customer's Address: " << customers[i].Address << endl;
-			cout << "Customer's Student Name: " << customers[i].Student_Name << endl;
-			cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
-		}
+				return true;
+			}
 			else
 			{
-				cout << "There aren't people with that name!";
+				return false;
 			}
 	}
-		
+	if(customerCount )
+	cout << "There aren't people with that name!";
 }
+*/
 void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	CUSTOMER customer;
-
 	cout << "Username: ";
 	cin >> customer.Username;
 
@@ -131,10 +126,9 @@ void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 
 	cout << "Last Name: ";
 	cin >> customer.Last_Name;
-
+	
 	cout << "Address: ";
 	cin >> customer.Address;
-
 	cout << "Student's name: ";
 	cin >> customer.Student_Name;
 
@@ -147,13 +141,20 @@ void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	}
 
 	createCustomer(customers, customerCount, customer, maxId);
+	customerCount++;
+	maxId++;
 }
 
 void editOrderMenu(CUSTOMER* customers, int& customerCount) {
 	int customerId;
 	cin >> customerId;
-	CUSTOMER customer = getOrder(customers, customerCount, customerId);
 
+	bool a = checkIsIdValid(customers, customerCount, customerId);
+	if (a == false)
+	{
+		cin >> customerId;
+	}
+	CUSTOMER customer = getOrder(customers, customerCount, customerId);
 	cout << "1. Username: " << endl;
 	cout << "2. Password: " << endl;
 	cout << "3. First Name: " << endl;
@@ -258,11 +259,12 @@ bool showMainMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 		deleteCustomerMenu(customers, customerCount, maxId);
 		break;
 	}
-	case 5:
+	/*case 5:
 	{
+		cout << customerCount << endl;
 		search(customers, customerCount);
 		break;
-	}
+	}*/
 	case 9: {
 		return false;
 	}
@@ -283,9 +285,19 @@ int main()
 	string admin;
 	string adminpass;
 	cout << "Insert Username: ";
-	getline(cin, admin);
+	while (!(cin >> admin) or admin != "admin")
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "\nEnter correct adminusername: ";
+	}
 	cout << "Insert Password: ";
-	getline(cin, adminpass);
+	while (!(cin >> adminpass) or adminpass != "adminpass")
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "\nEnter correct adminpass: ";
+	}
 	bool isAdmina = isAdmin(admin, adminpass);
 	if (isAdmina == true)
 	{
