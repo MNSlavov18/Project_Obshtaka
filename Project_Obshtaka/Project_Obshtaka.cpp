@@ -146,7 +146,12 @@ void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	cin >> customer.Password;
 
 	cout << "First Name: ";
-	cin >> customer.First_Name;
+	while (!(cin >> customer.First_Name) or isdigit!= 0)
+	{
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout << "\nEnter correct Year: ";
+	}
 
 	cout << "Last Name: ";
 	cin >> customer.Last_Name;
