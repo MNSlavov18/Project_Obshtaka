@@ -83,7 +83,7 @@ void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 
 	for (int i = 0; i < customerCount; i++)
 	{
-		cout << "Customer's id:" << customers[i].Id << endl;;
+		cout << "Customer's id: " << customers[i].Id << endl;;
 		cout << "Customer's Username: " << customers[i].Username << endl;
 		cout << "Customer's Password: " << customers[i].Password << endl;
 		cout << "Customer's First name: " << customers[i].First_Name << endl;
@@ -93,26 +93,50 @@ void showCustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId)
 		cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
 	}
 }
-/*bool serch(CUSTOMER* customers, int& customerCount)
+int getCustomerByLastName(CUSTOMER* customers, int& customerCount )
 {
-	string familyParents;
-	cin>>familyParents;
-  int count = 0;
+	string lastName;
+	cout << "Enter Last Name: ";
+	cin >> lastName;
 	for (int i = 0; i < customerCount; i++)
+	{
+		if (customers[i].Last_Name == lastName)
 		{
-			if (familyParents == customers->Last_Name)
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			cout << "Customer's id: " << customers[i].Id << endl;;
+			cout << "Customer's Username: " << customers[i].Username << endl;
+			cout << "Customer's Password: " << customers[i].Password << endl;
+			cout << "Customer's First name: " << customers[i].First_Name << endl;
+			cout << "Customer's Last Name: " << customers[i].Last_Name << endl;
+			cout << "Customer's Address: " << customers[i].Address << endl;
+			cout << "Customer's Student Name: " << customers[i].Student_Name << endl;
+			cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
+		}
 	}
-	if(customerCount )
-	cout << "There aren't people with that name!";
+	return -1;
 }
-*/
+
+int getCustomerByStudentName(CUSTOMER* customers, int& customerCount)
+{
+	string studentName;
+	cout << "Enter Student Name: ";
+	cin >> studentName;
+	for (int i = 0; i < customerCount; i++)
+	{
+		if (customers[i].Student_Name == studentName)
+		{
+			cout << "Customer's id: " << customers[i].Id << endl;;
+			cout << "Customer's Username: " << customers[i].Username << endl;
+			cout << "Customer's Password: " << customers[i].Password << endl;
+			cout << "Customer's First name: " << customers[i].First_Name << endl;
+			cout << "Customer's Last Name: " << customers[i].Last_Name << endl;
+			cout << "Customer's Address: " << customers[i].Address << endl;
+			cout << "Customer's Student Name: " << customers[i].Student_Name << endl;
+			cout << "Customer's Year of student: " << customers[i].Year_of_student << endl;
+		}
+	}
+	return -1;
+}
+
 void CustomerMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	CUSTOMER customer;
 	cout << "Username: ";
@@ -237,7 +261,8 @@ bool showMainMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 	cout << "2. Show Customer" << endl;
 	cout << "3. Edit Customer Order" << endl;
 	cout << "4. Delete Customer Order" << endl;
-	cout << "5. Seatch" << endl;
+	cout << "5. Get Customer By Parent Last Name" << endl;
+	cout << "6. Get Customer By Student Name" << endl;
 	cout << "9. Exit" << endl;
 	cout << "Your choice: ";
 
@@ -260,12 +285,16 @@ bool showMainMenu(CUSTOMER* customers, int& customerCount, int& maxId) {
 		deleteCustomerMenu(customers, customerCount, maxId);
 		break;
 	}
-	/*case 5:
+	case 5:
 	{
-		cout << customerCount << endl;
-		search(customers, customerCount);
+		getCustomerByLastName(customers, customerCount);
 		break;
-	}*/
+	}
+	case 6:
+	{
+		getCustomerByStudentName(customers, customerCount);
+		break;
+	}
 	case 9: {
 		return false;
 	}
